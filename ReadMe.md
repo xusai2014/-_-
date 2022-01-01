@@ -216,6 +216,7 @@ Js-bridge设计
 - [Webpack5 跨应用代码共享 - Module Federation](https://segmentfault.com/a/1190000024449390!)
 
 ### （4）前端工程化
+<img src="./mind-map/前端" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 **什么是前端工程化？**
 
