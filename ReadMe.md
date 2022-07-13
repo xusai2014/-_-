@@ -5,7 +5,7 @@
 
 <img src="./mind-map/大前端.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-### "大前端"的结构
+### 一、"大前端"的结构
 
 #### Web统一UI渲染
 
@@ -85,7 +85,6 @@ function handleRequest(res) {
     - elm 对应了真实 dom 元素
     - isVNode 和 isSameVNode 是 VNode 相关的静态方法
   - VNode生成函数
-    - 
   - diff 3种情况：
     - 对于相同的部分，保持不变。
     - 不一样，但是可复用。
@@ -117,7 +116,15 @@ function handleRequest(res) {
     - weixin 、 douyin、alipay、baidu等
     - 跨渠道的框架Taro、uni-app、mpvue、remax
 
-#### 微前端
+具体技术如下：
+
+- Hybrid APP分为 多View混合型、单View混合型 Web主体型
+  - 多View混合型即native view和web view独立展示，交替出现。
+  - 在同一个view内，native view和web view为层叠关系，同时出现。开发成本较高，难度较大，但是体验较好
+  - 应用主体是web view，穿插native功能，主要以网页语言编写
+
+
+#### 二、微前端
 
 
 
