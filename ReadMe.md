@@ -9,7 +9,7 @@
 
 #### （1）Web统一UI渲染
 
-Web端期望实现统一的UI渲染，通过复用web的标准化、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
+Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
 
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
@@ -19,7 +19,7 @@ Web端期望实现统一的UI渲染，通过复用web的标准化、框架模式
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关，基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter widget
 - 内容分发效率问题
-  - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率，例如SPA CSR兴起（包括骨架屏）、首屏体验提升的SSR、预渲染、CDN内容动态化以及各大APP平台的NSR渲染
+  - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率.例如SPA CSR兴起、SSR提升首屏体验、预渲染静态化、CDN内容动态化以及各大APP平台的NSR渲染
 - 跨端开发问题
   - android、ios、desktop、Smart TV等跨端上web探索，第一类是基于webview的渲染，第二类是基于数据和UI的计算合成 native渲染
 
@@ -55,7 +55,7 @@ function handleRequest(res) {
 - [snabbdom virtual DOM库](https://github.com/snabbdom/snabbdom!)
     - 介绍：snabbdom以函数的形式来表达程序视图，但现有的解决方式基本都过于臃肿、性能不佳、功能缺乏、API 偏向于 OOP 或者缺少一些我所需要的功能
     - vue vdom基于snabdom实现
-- CanvasKit
+- [CanvasKit](https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/!)
   - Flutter 将引擎编译成 WebAssembly 格式，并使用 WebGL 渲染，这种渲染方式的渲染器官方称为 CanvasKit 渲染器
 
 - 预编译 [handlebars 模版语法](https://github.com/handlebars-lang/handlebars.js)
@@ -139,6 +139,7 @@ function handleRequest(res) {
   - 网页导航canGoBack、goBack、canGoForward、goForward
   - 状态切换 onResume、onPause（暂停所有动作：DOM的解析、plugin的执行、JavaScript执行）、removeView、destroy
   - 缓存数据 clearCache、clearHistory、clearFormData
+- Native & web invoke with js-bridge
 
 
 
