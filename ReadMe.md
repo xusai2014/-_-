@@ -22,7 +22,6 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 
-
 统一UI层渲染问题分为如下三种：
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关。
@@ -65,8 +64,35 @@ function handleRequest(res) {
 - [snabbdom virtual DOM库](https://github.com/snabbdom/snabbdom!)
     - 介绍：snabbdom以函数的形式来表达程序视图，但现有的解决方式基本都过于臃肿、性能不佳、功能缺乏、API 偏向于 OOP 或者缺少一些我所需要的功能
     - vue vdom基于snabdom实现
-- [CanvasKit](https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/!)
-  - Flutter 将引擎编译成 WebAssembly 格式，并使用 WebGL 渲染，这种渲染方式的渲染器官方称为 CanvasKit 渲染器
+- [CanvasKit](https://skia.org/docs/user/modules/quickstart/！)
+
+<img src="./mind-map/CanvasKit图层渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
+
+```html
+<canvas id=foo width=300 height=300></canvas>
+
+<script type="text/javascript"
+  src="https://unpkg.com/canvaskit-wasm@0.19.0/bin/canvaskit.js"></script>
+<script type="text/javascript">
+  const ckLoaded = CanvasKitInit({
+    locateFile: (file) => 'https://unpkg.com/canvaskit-wasm@0.19.0/bin/'+file});
+  ckLoaded.then((CanvasKit) => {
+    const surface = CanvasKit.MakeCanvasSurface('foo');
+
+    const paint = new CanvasKit.Paint();
+    paint.setColor(CanvasKit.Color4f(0.9, 0, 0, 1.0));
+    paint.setStyle(CanvasKit.PaintStyle.Stroke);
+    paint.setAntiAlias(true);
+    const rr = CanvasKit.RRectXY(CanvasKit.LTRBRect(10, 60, 210, 260), 25, 15);
+
+    function draw(canvas) {
+      canvas.clear(CanvasKit.WHITE);
+      canvas.drawRRect(rr, paint);
+    }
+    surface.drawOnce(draw);
+  });
+</script>
+```
 
 - 预编译 [handlebars 模版语法](https://github.com/handlebars-lang/handlebars.js)
   - 数据绑定包括：表达式 {{ data.name }} 、块表达式{{#custom}}、内置块表达式{{#with}} {{#each}} 等
@@ -108,6 +134,7 @@ function handleRequest(res) {
 - [跨平台Web Canvas渲染引擎架构的设计与思考(内含实现方案)](https://www.modb.pro/db/111446!)
   <img src="./imgs/web_canvas_arct.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 - [你知道吗？SSR、SSG、ISR、DPR 有什么区别？](https://www.cnblogs.com/lhb25/p/16223782.html!)
+- [CanvasKit简介](https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/!)
 
 #### （2）大前端核心是跨平台
 
@@ -139,6 +166,7 @@ Js-bridge设计
 <img src="./mind-map/Js-bridge.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 #### 二、微前端
+
 微服务是一种开发软件的架构和组织方法，其中软件由通过明确定义的API进行通信的小型独立服务组成。把微服务的概念应用到前端， 前端微服务/微前端服务 就诞生了，简称其为微前端。
 
 微前端框架一般具有以下三个特点：
@@ -162,12 +190,69 @@ singleSpa.registerApplication({
 });
 ```
   - qiankun
-  - 
   - Module Federation
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+#### 三、前端工程化
+#### 四、BFF
+#### 五、2D 图形渲染
+
+**CPU vs GPU**
+CPU 和 GPU 都属于处理单元，但是结构不同。
+CPU 处理任务管道化，处理任务的速度完全取决于处理单个任务的时间，所以处理单个任务的能力十分的强大。
+GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万的像素点组成，每次处理一个像素都是一个简单任务，GPU能够保证同时处理所有的像素点。
+
+- WebGL
+  - WebGL通过引入一个与 OpenGL ES 2.0 非常一致的 API 来做到这一点，该 API 可以在 HTML5 <canvas>元素中使用。 这种一致性使 API 可以利用用户设备提供的硬件图形加速。
+  - Data in WebGL， GLSL 为 Shader 提供了三种不同作用的数据存储，每种都有一个特定的用例
+- WebGL 2 
+  - 是 WebGL 的一个主要更新，它通过WebGL2RenderingContext 接口提供。它基于 OpenGL ES 3.0，新功能包括
+- canvas 
+  - Canvas API 用于在网页上进行 2D 图形处理。
+
+**WebGL渲染管线**
+渲染管线是显示芯片内部处理图形信号相互独立的并行处理单元，主要分为以下几步：
+
+- 顶点着色器处理顶点 （对传入GPU中的顶点信息进行处理，需要进行裁剪空间变换、平移、缩放、旋转等操作。这些操作都是对顶点进行的，它直接改变了顶点的位置。 ）
+- 图元装配
+- 光栅化
+- 片元着色器着色
+- 测试 & 混合
+
+**着色器（Shader）**
+
+着色器是一种计算程序，主要用于进行图形处理。分为如下几类：
+- 顶点着色器（Vertex Shader）
+- 片元着色器(Fragment Shader)
+- 存储限定符
+  - attribute: 只能出现在顶点着色器中，表示每个顶点的数据。在光栅化过程中会对attribute变量进行插值处理。可以从外部往WebGL内部中传递数据
+  - uniform: 可以出现在顶点着色器和片元着色器中，表示统一的值，每个顶点/片元使用的这个值都是一样的。
+  - varying: 可以出现在顶点着色器和片元着色器中，表示变化的值，在光栅化阶段，GPU将attribute变量插值处理后的结果赋给了varying变量，它是链接顶点着色器和片元着色器变量之间的桥梁。
+
+**数据传递**
+
+- 传递Attribute变量 （传递attribute变量的数据需要使用 WebGLBuffer这个WebGL内置的数据结构）
+- 传递Uniform变量
+  - 通过API获取uniform变量在WebGL程序中的地址(gl.getUniformLocation)
+  - 再通过API这个地址中填充数据即可（gl.uniform1f， gl.uniform1i, gl.uniform2f......）
+- 传递纹理
+  - 创建纹理对象（WebGLTexture）(gl.createTexture())
+  - 绑定纹理对象(gl.bindTexture)
+  - 设置纹理参数
+  - 传入纹理（gl.texImage2D）
 
 
 
