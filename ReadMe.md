@@ -128,33 +128,9 @@ function handleRequest(res) {
     - weixin 、 douyin、alipay、baidu等
     - 跨渠道的框架Taro、uni-app、mpvue、remax
 
-具体技术如下：
+Hybrid APP
 
-- Hybrid APP分为 多View混合型、单View混合型 Web主体型
-  - 多View混合型即native view和web view独立展示，交替出现。
-  - 在同一个view内，native view和web view为层叠关系，同时出现。开发成本较高，难度较大，但是体验较好
-  - 应用主体是web view，穿插native功能，主要以网页语言编写
-- WebView进行配置和管理
-  - 添加访问网络权限
-  - 生成一个WebView组件（1. 直接在在Activity中生成. 2.在Activity的layout文件里添加webview控件）
-  - setJavaScriptEnabled、setPluginsEnabled、setUseWideViewPort、setLoadWithOverviewMode、setSupportZoom等
-- webview加载
-  - 超文本连接 https://www.xxx.com/page.html
-  - apk包中的html页面 file:///android_asset/test.html
-  - 手机本地的html页面 content://com.android.htmlfileprovider/sdcard/test.html
-  - 加载 HTML 片段 WebView.loadData(String data, String mimeType, String encoding)
-- webview API
-  - 网页导航canGoBack、goBack、canGoForward、goForward
-  - 状态切换 onResume、onPause（暂停所有动作：DOM的解析、plugin的执行、JavaScript执行）、removeView、destroy
-  - 缓存数据 clearCache、clearHistory、clearFormData
-- H5与Native交互设计
-  - NativeUI组件，header组件、消息类组件
-  - 通讯录、系统、设备信息读取接口
-  - 互相跳转
-  - Hybrid交互原理
-    - WKWebView+WKScriptMessageHandler实现JS与OC之间互相通信
-    - UIWebview的javaScriptcore方式
-
+<img src="./mind-map/Hybrid%20APP.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 #### 二、微前端
 微服务是一种开发软件的架构和组织方法，其中软件由通过明确定义的API进行通信的小型独立服务组成。把微服务的概念应用到前端， 前端微服务/微前端服务 就诞生了，简称其为微前端。
