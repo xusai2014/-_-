@@ -130,9 +130,13 @@ function handleRequest(res) {
     - weixin 、 douyin、alipay、baidu等
     - 跨渠道的框架Taro、uni-app、mpvue、remax
 
-Hybrid APP
+Hybrid APP 分析
 
 <img src="./mind-map/Hybrid%20APP.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
+
+Js-bridge设计
+
+<img src="./mind-map/Js-bridge.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 #### 二、微前端
 微服务是一种开发软件的架构和组织方法，其中软件由通过明确定义的API进行通信的小型独立服务组成。把微服务的概念应用到前端， 前端微服务/微前端服务 就诞生了，简称其为微前端。
