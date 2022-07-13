@@ -3,4 +3,4 @@
 
 ## 知识结构
 
-<img src="./mind-map/大前端.png">
+<img src="./mind-map/大前端.png" height="600px">
