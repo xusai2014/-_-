@@ -139,7 +139,13 @@ function handleRequest(res) {
   - 网页导航canGoBack、goBack、canGoForward、goForward
   - 状态切换 onResume、onPause（暂停所有动作：DOM的解析、plugin的执行、JavaScript执行）、removeView、destroy
   - 缓存数据 clearCache、clearHistory、clearFormData
-- Native & web invoke with js-bridge
+- H5与Native交互设计
+  - NativeUI组件，header组件、消息类组件
+  - 通讯录、系统、设备信息读取接口
+  - 互相跳转
+  - Hybrid交互原理
+    - WKWebView+WKScriptMessageHandler实现JS与OC之间互相通信
+    - UIWebview的javaScriptcore方式
 
 
 
