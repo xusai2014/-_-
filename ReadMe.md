@@ -16,15 +16,15 @@ Web端期望实现统一的UI渲染是，是复用web的标准化、框架模式
 
 
 统一UI层渲染问题分为如下三种：
-
-<img src="./mind-map/统一渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
-
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关，基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter widget
 - 内容分发效率问题
   - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率，例如SPA CSR兴起（包括骨架屏）、首屏体验提升的SSR、预渲染、CDN内容动态化以及各大APP平台的NSR渲染
 - 跨端开发问题
   - android、ios、desktop、Smart TV等跨端上web探索，第一类是基于webview的渲染，第二类是基于数据和UI的计算合成 native渲染
+
+<img src="./mind-map/统一渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
+
 
 渲染层具体技术介绍如下：
 - [react-dom 虚拟DOM](https://github.com/facebook/react/tree/main/packages/react-dom!)
