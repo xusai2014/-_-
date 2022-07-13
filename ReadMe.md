@@ -67,7 +67,7 @@ function handleRequest(res) {
     });
 }
 ```
-  - [virtual DOM 库](https://github.com/snabbdom/snabbdom!)
+  - [snabbdom virtual DOM库](https://github.com/snabbdom/snabbdom!)
     - 介绍：snabbdom以函数的形式来表达程序视图，但现有的解决方式基本都过于臃肿、性能不佳、功能缺乏、API 偏向于 OOP 或者缺少一些我所需要的功能
     - vue vdom 基于snabdom实现
     
