@@ -11,7 +11,11 @@
 
 <img src="./imgs/web_ui.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-Web端期望实现统一的UI渲染是基于浏览器（包括Webview）的渲染引擎而实现。统一UI层渲染问题分为两种：
+Web端期望实现统一的UI渲染是基于浏览器（包括Webview）的渲染引擎而实现。
+
+统一UI层渲染问题分为如下三种：
+
+<img src="./mind-map/统一渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关，基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter Canvas 图层渲染方案
