@@ -122,6 +122,20 @@ function handleRequest(res) {
   - 多View混合型即native view和web view独立展示，交替出现。
   - 在同一个view内，native view和web view为层叠关系，同时出现。开发成本较高，难度较大，但是体验较好
   - 应用主体是web view，穿插native功能，主要以网页语言编写
+- WebView进行配置和管理
+  - 添加访问网络权限
+  - 生成一个WebView组件（1. 直接在在Activity中生成. 2.在Activity的layout文件里添加webview控件）
+  - setJavaScriptEnabled、setPluginsEnabled、setUseWideViewPort、setLoadWithOverviewMode、setSupportZoom等
+- webview加载
+  - 超文本连接 https://www.xxx.com/page.html
+  - apk包中的html页面 file:///android_asset/test.html
+  - 手机本地的html页面 content://com.android.htmlfileprovider/sdcard/test.html
+  - 加载 HTML 片段 WebView.loadData(String data, String mimeType, String encoding)
+- webview API
+  - 网页导航canGoBack、goBack、canGoForward、goForward
+  - 状态切换 onResume、onPause（暂停所有动作：DOM的解析、plugin的执行、JavaScript执行）、removeView、destroy
+  - 缓存数据 clearCache、clearHistory、clearFormData
+
 
 
 #### 二、微前端
