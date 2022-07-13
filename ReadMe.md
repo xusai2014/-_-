@@ -1,10 +1,16 @@
 
-##  大前端
+##  大前端知识体系
 
-## 知识结构
+## 介绍
 
 <img src="./mind-map/大前端.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
+**目录**
+
+- 一、"大前端"的结构
+  - （1）Web统一UI渲染
+  - （2）大前端核心是跨平台
+- 二、微前端
 ### 一、"大前端"的结构
 
 #### （1）Web统一UI渲染
@@ -72,7 +78,7 @@ function handleRequest(res) {
 - [jsdom](https://github.com/jsdom/jsdom!)
   - 介绍：由 javascript 实现的一系列 web标准，特别是 WHATWG 组织制定的DOM和 HTML 标准，用于在 nodejs 中使用。该项目的目标是模拟足够的Web浏览器子集，以便用于测试和挖掘真实世界的Web应用
 
-** 优秀文档：**
+**优秀文档：**
 - [Virtual DOM 的设计与实现](https://nosaid.com/article/virtual-dom!)
   - VNode 的设计
     - key 是 VNode 在同一父节点下的唯一标识
