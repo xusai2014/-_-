@@ -108,7 +108,8 @@ function handleRequest(res) {
       - 新节点是容器节点，旧的是文本节点。删除文本，添加新节点
       - 新节点是文本节点，旧的是容器节点。删除容器节点，添加文本节点。
 - [jsdom 中文介绍](https://github.com/jsdom/jsdom/wiki/jsdom-%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3!)
-
+- [跨平台Web Canvas渲染引擎架构的设计与思考(内含实现方案)](https://www.modb.pro/db/111446!)
+  <img src="./imgs/web_canvas_arct.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 #### （2）大前端核心是跨平台
 
 打破平台的桎梏，是前端开发人的执念。整体发展阶段如下：
