@@ -11,7 +11,7 @@
 
 <img src="./imgs/web_ui.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-Web端期望实现统一的UI渲染是基于浏览器（包括Webview）的渲染引擎而实现。
+Web端期望实现统一的UI渲染是，是复用web的技术手段、布局标准、工具来降低开发门槛、拓展开发边界。
 
 统一UI层渲染问题分为如下三种：
 
