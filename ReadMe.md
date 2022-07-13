@@ -17,11 +17,13 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 
 统一UI层渲染问题分为如下三种：
 - 框架渲染问题
-  - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关，基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter widget
+  - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关。
+  - 基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter Canvaskit图层渲染
 - 内容分发效率问题
-  - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率.例如SPA CSR兴起、SSR提升首屏体验、预渲染静态化、CDN内容动态化以及各大APP平台的NSR渲染
+  - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率。
+  - 例如SPA CSR兴起、SSR提升首屏体验、预渲染静态化、CDN内容动态化以及各大APP平台的NSR渲染
 - 跨端开发问题
-  - android、ios、desktop、Smart TV等跨端上web探索，第一类是基于webview的渲染，第二类是基于数据和UI的计算合成 native渲染
+  - android、ios、desktop、Smart TV等跨端上web探索，第一类是基于webview的渲染，第二类是基于数据和UI的计算合成native渲染
 
 <img src="./mind-map/统一渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
