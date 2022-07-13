@@ -11,7 +11,7 @@
 
 Web端期望实现统一的UI渲染是，是复用web的标准化、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
 
-<img src="./imgs/web_ui.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
+<img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 
 
