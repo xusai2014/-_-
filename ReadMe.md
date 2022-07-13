@@ -9,7 +9,7 @@
 
 #### （1）Web统一UI渲染
 
-Web端期望实现统一的UI渲染是，是复用web的标准化、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
+Web端期望实现统一的UI渲染，通过复用web的标准化、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
 
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
@@ -101,7 +101,12 @@ function handleRequest(res) {
 
 #### （2）大前端核心是跨平台
 
-打破平台的桎梏，是前端开发人的执念。整体发展阶段如下：
+打破平台的桎梏，是前端开发人的执念。
+
+<img src="./mind-map/核心是跨平台技术.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
+
+
+整体发展阶段如下：
 
 - Hybrid APP（类原生体验）
   - Cordova、Ionic
