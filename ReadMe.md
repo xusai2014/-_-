@@ -301,7 +301,11 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 点阵图和矢量图，区别在于缩放会失真
 
 
-
+优秀文档：
+- [CPU versus GPU with the Canvas Web API](https://www.middle-engine.com/blog/posts/2020/08/21/cpu-versus-gpu-with-the-canvas-web-api!)
+  - 介绍：CanvasAPI是一个丰富和性能强的API，用于在Web浏览器中绘制和操作2D图形。它与<canvas>HTML元素或OffscreenCanvas一起使用。当将内容渲染到canvas时，浏览器可以选择使用CPU或GPU。这篇文章着眼于浏览器是如何做出这一决定的，以及这对性能的影响。
+  - 浏览器策略
+    - 当创建Canvas时，浏览器需要考虑如何存储。它可能在主内存中存储数据，调用cpu上运行方法去渲染，也可能在GPU创建canvas，调用GPU指令绘制它。
 
 [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work!)
 
