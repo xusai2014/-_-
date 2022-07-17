@@ -196,9 +196,9 @@ Js-bridge设计
     - 核心定义了一套协议，协议包含主应用的配置信息和子应用的生命周期，通过协议主应用可以知道在什么情况下激活哪个子应用。
 ```javascript
 singleSpa.registerApplication({
-  name: "subApp1", //子应用的名称
-  app: () => System.import("/a/b/subAPP/code"),//告诉主应用如何加载子应用的代码，
-  activeWhen: "/subApp1", //告诉主应用何时激活子应用
+name: "subApp1", //子应用的名称
+app: () => System.import("/a/b/subAPP/code"),//告诉主应用如何加载子应用的代码，
+activeWhen: "/subApp1", //告诉主应用何时激活子应用
 });
 ```
   - Qiankun：基于Single-Spa，阿里系开源微前端框架。
