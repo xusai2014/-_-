@@ -37,7 +37,6 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-
 统一UI层渲染问题分为如下三种：
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关。
