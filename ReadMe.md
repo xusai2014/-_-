@@ -173,8 +173,10 @@ Js-bridge设计
 
 - 技术栈无关：主框架不限制接入应用的技术栈，子应用具备完全自主权。
 - 独立性强：独立开发、独立部署，子应用仓库独立。
+- 增量升级
 - 状态隔离：运行时每个子应用之间状态隔离。
 
+<img src="./mind-map/微前端.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 微前端实现思路：
 - 服务端集成，利用Nginx配置反向代理来实现不同路径映射到不同应用
@@ -190,7 +192,9 @@ singleSpa.registerApplication({
 });
 ```
   - qiankun
+    - 
   - Module Federation
+    - 
 
 
 
