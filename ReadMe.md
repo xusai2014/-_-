@@ -37,7 +37,8 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-统一UI层渲染问题分为如下三种：
+**UI层渲染核心问题**
+
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关。
   - 基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter Canvaskit图层渲染
@@ -50,7 +51,8 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 <img src="./mind-map/统一渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
 
-渲染层具体技术介绍如下：
+**常见渲染层技术方案**
+
 - [react-dom 虚拟DOM](https://github.com/facebook/react/tree/main/packages/react-dom!)
     - createPortal 提供了一种将子节点渲染到已 DOM 节点中的方式，该节点存在于 DOM 组件的层次结构之外
     - flushSync 强制 React 同步刷新提供的回调函数中的任何更新。这确保了 DOM 会被立即更新
@@ -60,59 +62,20 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
     - （静态页面生成器）renderToStaticNodeStream 此方法与 renderToNodeStream 相似，但此方法不会在 React 内部创建的额外 DOM 属性，例如 data-reactroot
     - renderToString 将一个 React 元素渲染成其初始的 HTML。React 将返回一个 HTML 字符串
     - （静态页面生成器）renderToStaticMarkup 与 renderToString 相似，只是该方法不会创建 React 内部使用的额外 DOM 属性，如 data-reactroot
-```javascript
-// 客户端
-import { createRoot } from 'react-dom/client';
-function App() { return <div>Hello World</div>; }
-const root = createRoot(document.getElementById('root'));
-root.render(<App />);
 
-// 服务端
-import { renderToPipeableStream } from 'react-dom/server';
-function App() { return <div>Hello World</div>;}
-function handleRequest(res) {
-    const stream = renderToPipeableStream(<App />, {
-        onShellReady() { res.statusCode = 200; res.setHeader('Content-type', 'text/html'); stream.pipe(res);},
-    });
-}
-```
 - [snabbdom virtual DOM库](https://github.com/snabbdom/snabbdom!)
     - 介绍：snabbdom以函数的形式来表达程序视图，但现有的解决方式基本都过于臃肿、性能不佳、功能缺乏、API 偏向于 OOP 或者缺少一些我所需要的功能
-    - vue vdom基于snabdom实现
+    - vue vdom基于snabbdom实现
+
 - [CanvasKit](https://skia.org/docs/user/modules/quickstart/！)
 
 <img src="./mind-map/CanvasKit图层渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
-```html
-<canvas id=foo width=300 height=300></canvas>
 
-<script type="text/javascript"
-  src="https://unpkg.com/canvaskit-wasm@0.19.0/bin/canvaskit.js"></script>
-<script type="text/javascript">
-  const ckLoaded = CanvasKitInit({
-    locateFile: (file) => 'https://unpkg.com/canvaskit-wasm@0.19.0/bin/'+file});
-  ckLoaded.then((CanvasKit) => {
-    const surface = CanvasKit.MakeCanvasSurface('foo');
-
-    const paint = new CanvasKit.Paint();
-    paint.setColor(CanvasKit.Color4f(0.9, 0, 0, 1.0));
-    paint.setStyle(CanvasKit.PaintStyle.Stroke);
-    paint.setAntiAlias(true);
-    const rr = CanvasKit.RRectXY(CanvasKit.LTRBRect(10, 60, 210, 260), 25, 15);
-
-    function draw(canvas) {
-      canvas.clear(CanvasKit.WHITE);
-      canvas.drawRRect(rr, paint);
-    }
-    surface.drawOnce(draw);
-  });
-</script>
-```
-
-- 预编译 [handlebars 模版语法](https://github.com/handlebars-lang/handlebars.js)
+- [handlebars 模版语法](https://github.com/handlebars-lang/handlebars.js) 预编译类
   - 数据绑定包括：表达式 {{ data.name }} 、块表达式{{#custom}}、内置块表达式{{#with}} {{#each}} 等
     
-- 预编译 [art-template 简约、超快的模板引擎](https://github.com/aui/art-template!)
+- [art-template 简约、超快的模板引擎](https://github.com/aui/art-template!) 预编译类
 
 - [ejs 高效的嵌入式 JavaScript 模板引擎](https://github.com/mde/ejs!)
   - EJS 能够缓存 JS 函数的中间代码，从而提升执行速度。例如：ejs.cache = LRU(100);
@@ -376,6 +339,76 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 
 
 
+
+
+
+
+
+## 二、技术栈及开源方案
+
+### （1）V8 引擎
+### （2）JS 运行环境
+### （3）浏览器运行机制
+### （4）HTTP 规范
+### （5）框架
+
+**React**
+
+
+
+
+
+## 三、编程知识
+### （1）编程语言
+- Typescript
+  - 基础类型：字符串、数字、布尔值、数组、元组、枚举、any、void、null、undefined、never、object、类型断言
+  - 高级类型：Required<T>、Partial<T>、Readonly<T>、 Pick<T, K extends keyof T> 、Exclude<T, U>、Extract<T, U>、Omit<T, K extends keyof any>、NonNullable< T >、Record<K extends keyof any, T>
+  - interface
+    - 可索引类型
+  - type
+  - 
+## 四、前端用户体验建设
+
+## 五、架构设计
+
+## 六、前端热点专项
+
+### 移动端适配方案
+
+基本概念：
+- 屏幕尺寸
+- 物理像素（设备像素）显示分辨率的像素单位
+- 设备独立像素 通常是操作系统设定的屏幕分辨率的抽象单位，一个设备独立像素由若干个物理像素组成
+- 逻辑像素
+- CSS 像素 
+- window.devicePixelRatio 是当前显示设备的物理像素分辨率与 CSS 像素分辨率之比
+- 静态布局 网页上的所有元素的尺寸一律使用px作为单位，不考虑浏览器尺寸，一律统一显示。
+- 流式布局（Liquid Layout）页面元素的宽度按照屏幕分辨率进行适配调整，但整体布局不变。代表作栅栏系统（网格系统）
+- 自适应布局（Adaptive Layout）创建多个静态布局，每个静态布局对应一个屏幕分辨率范围。改变屏幕分辨率可以切换不同的静态局部（页面元素位置发生改变），但在每个静态布局中，页面元素不随窗口大小的调整发生变化
+- 响应式布局（Responsive Layout）响应式设计的目标是确保一个页面在所有终端上（各种尺寸的PC、手机、手表、冰箱的Web浏览器等等）都能显示出令人满意的效果，对CSS编写者而言，在实现上不拘泥于具体手法，但通常是糅合了流式布局+弹性布局，再搭配媒体查询技术使用呈现更好的用户体验
+- 弹性布局（rem/em布局）改变浏览器宽度，页面所有元素的高宽都等比例缩放
+
+自适应（AWD）和响应式（RWD）
+
+自适应是网页内容根据设备的不同而进行适应，通过检测视口分辨率，来判断当前访问的设备是pc端、平板还是手机，从而请求服务层，返回不同的页面；
+自适应是对CDN不友好的，一般CDN的行为在分配时不考虑访问设备
+
+响应式布局是网页的布局针对屏幕大小的尺寸而进行响应，一套界面即可适用于所有尺寸及终端。糅合了流式布局+弹性布局，再搭配媒体查询技术使用
+
+
+
+适配方案的设计策略
+- 精简并优化导航体系
+- 移除不必要的特效
+- 合理的字体排版
+- 控件排布关系可进行调整
+- 优化按钮或可点击元素的位置及热区大小
+- 复杂任务向PC转移
+
+
+优秀文档：
+- [CSS Guidebook](https://tsejx.github.io/css-guidebook/)
+- [video切换清晰度_移动端浏览器中的视频分辨率切换方案](https://blog.csdn.net/weixin_39552538/article/details/111227914)
 
 
 
