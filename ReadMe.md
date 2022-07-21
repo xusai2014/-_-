@@ -354,7 +354,8 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 
 **React**
 
-
+优秀文档：
+- [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 
 
 
@@ -366,7 +367,300 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
   - interface
     - 可索引类型
   - type
-  - 
+  
+### （2）语法
+### （3）编译器
+### （4）编程范式
+### （5）算法
+### （6）笔试题
+
+```javascript
+// 1.防抖函数
+
+function _debounce(func,m) {
+  let timer = null
+  return function () {
+     const args = arguments;
+     if(timer) {
+       clearTimeout(timer); 
+     }
+     timer = setTimeout(function() {
+       func.apply(this, args)
+     }, m)
+  }
+}
+function clg(){
+  
+  console.log(...arguments)
+}
+clg(1)
+clg(2)
+const dClg = _debounce(clg, 5)
+dClg(3)
+dClg(4)
+dClg(5)
+
+// 2.斐波那契额数列
+function fib1(n) {
+  console.log('*****fn1',n)
+  if(n < 0) throw new Error('输入的数字不能小于0');
+  if (n < 2) {
+    return n;
+  }
+
+  return fib1(n - 1) + fib1(n - 2);
+}
+
+// 存在重复执行问题
+
+fib1(5)
+
+// 优化后
+function fib2(n) {
+
+  if(n < 0) throw new Error('输入的数字不能小于0');
+  if (n < 2) return n;
+  function _fib(n, a, b) {
+    console.log('*****fn2',n)
+    if (n === 0) return a;
+    return _fib(n - 1, b, a + b);
+  }
+  return _fib(n, 0, 1);
+}
+
+fib2(5)
+
+function* fib3(n) {
+  if(n < 0) throw new Error('输入的数字不能小于0');
+  let f0 = 1,
+          f1 = 1,
+          count = 0;
+  while (count < n) {
+    yield f0;
+    [f0, f1] = [f1, f0 + f1];
+    count++;
+  }
+}
+const fn = fib3(5)
+fn.next()
+fn.next()
+fn.next()
+fn.next()
+fn.next()
+fn.next()
+fn.next()
+
+/**
+ * 4.题目：实现 add(1)(2)(3)
+ *
+ */
+
+function curry(fn, ...args1) {
+  const next = function(...args2) {
+    return curry.call(this, fn,...args1,...args2)
+  }
+  next.toString = function(){
+    return fn(...args1);
+  }
+  next.valueOf = function(){
+    return fn(...args1);
+  }
+  return next
+}
+
+const addC = curry(function(...args){
+  return args.reduce((a,b)=>a * b,1)
+})
+
+
+const valueOf = function(fn) {
+  return +fn
+}
+
+const a = valueOf(addC(1)(2)(3))
+
+console.log(a)
+
+/**
+ * 5.题目：数组转结构化数据
+ *
+ */
+
+const data = [
+  {
+    value: "中国",
+    index: 0,
+  },{
+    value: "江苏",
+    index: 1,
+    parent: 0,
+  }
+  ,{
+    value: "北京",
+    index: 2,
+    parent: 0,
+  },{
+    value: "睢宁",
+    index: 4,
+    parent: 3,
+  }
+  ,{
+    value: "徐州",
+    index: 3,
+    parent: 1,
+  }
+  ,{
+    value: "朝阳",
+    index: 5,
+    parent: 2,
+  }
+]
+function matchNode(root, current){
+  let isMatch = false;
+  root.map((v)=>{
+    if(v.index === current.parent) {
+      if(!v.children) v.children = [];
+      v.children.push(current)
+      isMatch = true;
+    } else if(v.children) {
+      isMatch = matchNode(v.children, current) || isMatch
+    }
+  })
+  return isMatch;
+}
+
+function matchList(root, list) {
+  const newList = list.filter((v)=>{
+    const isMatch  = matchNode(root, v);
+    return !isMatch;
+  })
+  return newList
+  // while(newList.length > 0) {
+  //   console.log(newList.length)
+  //   matchList(root, newList)
+  // }
+
+}
+
+function tranverse(data) {
+  const rootList = []
+  const list = data.filter(v => {
+    if(typeof v.parent === 'undefined') rootList.push(v)
+    return typeof v.parent !== 'undefined'
+  })
+  try{
+    let result = list
+    while(result.length > 0) {
+      result = matchList(rootList, result)
+    }
+  } catch(e){
+    console.log(e.exception)
+  }
+  return rootList
+}
+
+const result = tranverse(data)
+
+/**
+ * 6.题目：Promise.prototype.sequential; 串行并发，节约型、忽略型
+ *
+ */
+
+
+Promise.sequential = function(arr, options) {
+  const ALL_SUCCESS_SEQUENTISLL_STATUS = {
+    IGNORE: 0, // 0 串行请求，忽略错误 忽略型
+    STOP: 1 //1 串行请求，遇到错误即停止，节约型
+  }
+  const list = [];
+  const {
+    ALL_SUCCESS_SEQUENTISLL
+  } = options;
+  return arr.reduce((pro, current)=>{
+    return pro.then(
+            (x)=> {
+              if(ALL_SUCCESS_SEQUENTISLL === ALL_SUCCESS_SEQUENTISLL_STATUS.IGNORE) {
+                return current.then((v)=>list.push(v),()=>list.push(null))
+              }
+
+              if(ALL_SUCCESS_SEQUENTISLL === ALL_SUCCESS_SEQUENTISLL_STATUS.STOP) {
+                return current.then((v)=>list.push(v),()=>Promise.reject())
+              }
+
+            }
+    )
+  }, Promise.resolve())
+          .then(()=>list,()=>list)
+}
+
+const list = Promise.sequential([
+  new Promise((resolve,reject) => resolve(1)),
+  new Promise((resolve,reject) => resolve(2)),
+  new Promise((resolve,reject) => reject(3)),
+  new Promise((resolve,reject) => resolve(4))
+],{
+  ALL_SUCCESS_SEQUENTISLL: 1
+}).then( function(result){
+  console.log('result****',result)
+})
+
+
+
+/**
+ * 7.题目：链式调用
+ *
+ */
+
+class LinkResolve {
+  constructor(func) {
+    this.func = func;
+  }
+  value = null
+  list= []
+}
+
+LinkResolve.prototype.done = function(value){
+
+  return this.list.length > 1 ? this.func(...this.list): this.list?.[0]
+}
+LinkResolve.prototype.then = function(value){
+  this.list.push(value)
+  return this
+}
+
+const fn = new LinkResolve((...args)=> args.reduce((a,b)=>a + b));
+
+const result = fn.then(1).then(4).then(5).done();
+console.log(result)
+
+/**
+ * 7.题目：Proxy
+ *
+ */
+
+const data = {
+  value: 0
+};
+const proxy = new Proxy(data, {
+  get: function(target, key) {
+    console.log('get alue')
+    return target[key]
+  },
+  set: function(target, key, value) {
+    console.log('set alue')
+    target[key] = value
+  }
+});
+console.log(proxy.value)
+proxy.value = 5;
+console.log(proxy.value)
+
+
+
+```
+优秀文档：
+- [FE-Interview/issues](https://github.com/lgwebdream/FE-Interview/issues)
+
 ## 四、前端用户体验建设
 
 ## 五、架构设计
