@@ -359,6 +359,28 @@ V8 提供了 JavaScript 执行的运行时环境，其它Javascript引擎：Spid
 ### （2）JS 运行环境
 ### （3）浏览器运行机制
 ### （4）HTTP 规范
+- HTTP 0.9
+  - 仅支持GET请求，通过URL携带参数获得资源，无请求头
+- HTTP 1.0
+  - 增加支持Post、Head等请求方法，增加请求头，可支持多种内容数据类型，不局限于文本格式
+- HTTP 1.1 （缺点：同一个域名6个并发连接限制，应用层队头阻塞-长响应队头阻塞）
+  - 默认采用keep-alive 复用 TCP连接，
+  - 管道方式同时发送请求（客户端并发）
+  - 分块传输编码，产生一块数据，就发送一块，采用"流模式"（stream）取代"缓存模式"（buffer）
+  - 新增了请求方式 PUT、PATCH、OPTIONS、DELETE
+  - 支持文件断点续传，RANGE:bytes
+- HTTP 2.0 （缺点：同一个域名6个并发连接限制，TCP丢包或延迟队头阻塞-长响应队头阻塞）
+  - 二进制分帧层 HTTP消息分解互不依赖的帧，可交错发送
+  - 多路复用
+  - 头信息压缩
+  - 服务器推送
+- HTTP 3.0
+  - QUIC
+
+优秀文档：
+- [网络协议从入门到底层原理（9）HTTP/1.1的升级改进（HTTP/2、HTTP/3）](http://www.h3hw.com/1368.html)
+
+
 ### （5）框架
 
 **React**
@@ -382,6 +404,22 @@ V8 提供了 JavaScript 执行的运行时环境，其它Javascript引擎：Spid
   - 浮点数精度问题
   - 大数精度问题
   - toFixed 四舍五入结果不准确
+- Javascript 的二进制流
+  - Blob 对象表示一个不可变、原始数据的类文件对象
+  - File 对象是特殊类型的 Blob
+  - JavaScript 类型化数组 （将实现拆分为缓冲和视图两部分）
+    - ArrayBuffer 对象用来表示通用的、固定长度的原始二进制数据缓冲区，不能直接操作 ArrayBuffer 的内容，而是要通过类型数组对象或 DataView 对象来操作
+    - SharedArrayBuffer 内存使用
+    - 类型数组视图 Int8Array，Uint32Array，Float64Array 等等
+    - 数据视图 DataView 是一种底层接口，它提供有可以操作缓冲区中任意数据的读写接口
+    - 
+  - 
+  - 文件操作
+    - FileReader
+    - URL.createObjectURL() 内存读取并生成内存URL
+  - 流操作 API (这是一个实验中的功能)
+    - ReadableStream 接口呈现了一个可读取的二进制流操作
+    - WritableStream 接口为将流数据写入目的地（称为 sink）提供了一个标准的抽象。该对象带有内置的背压和队列
 ### （3）编译器
 ### （4）编程范式
 ### （5）算法
@@ -671,6 +709,7 @@ console.log(proxy.value)
 
 
 ```
+
 优秀文档：
 - [FE-Interview/issues](https://github.com/lgwebdream/FE-Interview/issues)
 
