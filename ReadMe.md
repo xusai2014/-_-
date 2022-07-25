@@ -337,9 +337,42 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 
 [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work!)
 
+### （7）音视频
+### （8）VR/AR/XR
+### （9）前后端一体化
+### （10）网络安全
 
+#### web安全
 
+CSP (内容安全策略) 是一个附加的安全层，有助于探测和减轻某些类型的攻击，包括跨站脚本攻击（XSS）和数据注入攻击
+- 跨站脚本攻击，CSP 的主要目标是减少和报告 XSS 攻击，通过指定有效域——即浏览器认可的可执行脚本的有效来源——使服务器管理者有能力减少或消除 XSS 攻击所依赖的载体
+- 数据包嗅探攻击，除限制可以加载内容的域，服务器还可指明哪种协议允许使用
+- Content-Security-Policy:default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com
+- 报告 (report-only)模式 Content-Security-Policy-Report-Only: policy 
+- 启用违例报告 Content-Security-Policy: default-src 'self'; report-uri http://reportcollector.example.com/collector.cgi
 
+信息安全基本原理
+
+不安全的密码 HTTPS 协议旨在保护用户数据在网络上不被窃听（机密性）和不被篡改（完整性）
+  - 
+混合内容 (en-US)
+公钥固定 (en-US)
+同源策略
+安全环境
+保护你的网站
+子资源完整性
+传输层安全协议
+HTTP Public Key Pinning (HPKP)
+Secure contexts
+弱签名算法
+浏览器的同源策略
+确保你的站点安全
+
+Cookie 安全性
+HttpOnly
+
+优秀文档
+- [Web 安全](https://developer.mozilla.org/zh-CN/docs/Web/Security!)
 ## 二、技术栈及开源方案
 
 ### （1）V8 引擎
@@ -359,6 +392,8 @@ V8 提供了 JavaScript 执行的运行时环境，其它Javascript引擎：Spid
 ### （2）JS 运行环境
 ### （3）浏览器运行机制
 ### （4）HTTP 规范
+
+**HTTP 版本**
 - HTTP 0.9
   - 仅支持GET请求，通过URL携带参数获得资源，无请求头
 - HTTP 1.0
@@ -377,8 +412,70 @@ V8 提供了 JavaScript 执行的运行时环境，其它Javascript引擎：Spid
 - HTTP 3.0
   - QUIC
 
+**HTTP 断点续传**
+- 即通过定义请求头 Range 和响应头 content-range，来实现切片传输。
+- 标识文件唯一性的方法，通过 MD5、last-modified 、etag，进行校验。或者If-Range头
+
+
+**HTTP 缓存**
+
+- 强缓存
+  - Cache-Control 用于指示代理和 UA 使用何种缓存策略
+    - no-cache 为本次响应不可直接用于后续请求
+    - no-store 为禁止缓存
+    - private为仅 UA 可缓存
+    - public为大家都可以缓存
+    - max-age、Expires、Vary 缓存有效性 （Vary: * ,所有头部不做区分。）
+- 协商缓存 （304）
+  - etag - 请求头携带If-None-Match
+  - Last-Modified 请求头携带If-Modified-Since，使用修改时间
+- 启发式缓存
+  - 如果一个可以缓存的请求没有设置Expires和Cache-Control，但是响应头有设置Last-Modified信息，这种情况下浏览器会有一个默认的缓存策略：(Date - Last-Modified)*0.1，这就是启发式缓存。
+
+**HTTP 内容协商**
+同一个 URL 可以提供多份不同的内容
+协商方式主要有两类：
+- 服务端可用版本列表让客户端选择，300 Multiple Choices
+- 服务端根据客户端发送的请求头中某些字段自动发送最合适的版本
+
+由于客户端和服务端之间可能存在一个或多个中间代理，缓存服务最基本的要求是给用户返回正确的文档。
+
+所以 HTTP 协议规定，服务端提供的内容取决于用户代理「常规 Accept 协商字段之外」的请求头字段，
+那么响应头中必须包含 Vary 字段，且 Vary 的内容必须包含 User-Agent。同理，
+如果服务端同时使用请求头中 User-Agent 和 Cookie 这两个字段来生成内容，那么响应中的 Vary 字段看上去应该是这样的：
+
+Vary: User-Agent, Cookie
+
+**浏览器的同源策略**
+同源定义 协议/主机/端口元组 （IE忽略端口）
+
+
+跨源网络访问
+  - 跨源写操作
+  - 跨源资源嵌入 script、link、img、video、font-face、iframe
+  - 跨源读操作
+
+如何允许跨源访问？使用 CORS 来允许跨源访问
+如何阻止跨源访问？
+- 阻止跨源写操作，只要检测请求中的一个不可推测的标记 (CSRF token) 即可
+- 阻止资源的跨源读取 需要保证该资源是不可嵌入的
+- 阻止跨源嵌入 需要确保你的资源不能通过以上列出的可嵌入资源格式使用
+
+跨源数据存储访问
+- 如 localStorage 和 IndexedDB，是以源进行分割
+- Cookies 使用不同的源定义方式
+
+**跨源资源共享 CORS**
+是一种基于 HTTP 头的机制，该机制通过允许服务器标示除了它自己以外的其它 origin（域，协议和端口），使得浏览器允许这些 origin 访问加载自己的资源
+跨源资源的"预检"请求
+
+
+
+
+
 优秀文档：
 - [网络协议从入门到底层原理（9）HTTP/1.1的升级改进（HTTP/2、HTTP/3）](http://www.h3hw.com/1368.html)
+- [前端常见跨域解决方案](https://segmentfault.com/a/1190000011145364)
 
 
 ### （5）框架
@@ -706,7 +803,41 @@ console.log(proxy.value)
 proxy.value = 5;
 console.log(proxy.value)
 
+/**
+ * 8.题目：文件操作及二进制流
+ *
+ *
+ */
 
+// * Blob(blobParts[, options])
+//（1）对象表示一个不可变、原始数据的类文件对象,它的数据可以按文本或二进制的格式进行读取
+//（2）也可以转换成 ReadableStream 来用于数据操作。
+const b = new Blob(['XXXXXX'],{type: "text/plain", endings: "transparent"})
+
+const f = new File(['YYYYYY'],'a.k',{type: 'text/plain'})
+
+const buffer = new ArrayBuffer(16)
+
+const view = new Int8Array(buffer)
+
+const dataView = new DataView(buffer)
+
+dataView.getInt16()
+
+
+// FileReader
+const reader = new FileReader();
+reader.onload = function(e) {
+  console.log('reader-',e.target.result)
+}
+
+// reader.readAsArrayBuffer(b)
+// reader.readAsBinaryString(b) // 已废弃
+reader.readAsText(b)
+// reader.readAsDataURL(b)
+
+const obj = URL.createObjectURL(f)
+console.log(obj)
 
 ```
 
