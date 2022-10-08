@@ -338,8 +338,40 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work!)
 
 ### （7）音视频
+- Media Source Extensions
+
 ### （8）VR/AR/XR
 ### （9）前后端一体化
+### （10）云原生
+云原生：云计算环境中构建、部署和管理现代应用程序的软件方法
+
+期望应用程序具有如下特性：
+
+- 拓展性
+- 灵活性
+- 弹性
+
+从而获得收益：
+- 提效
+- 降本
+- 高可用
+
+云原生应用程序架构：
+
+- 不可变基础设施
+- 微服务
+- 声明式API
+- 容器
+- 服务网格
+
+#### aws 云计算环境
+- Amazon Identity and Access Management (IAM)
+  - 资源和服务的精细化控制
+  - 用户组 - 用户 - 角色
+- 
+
+
+
 ### （10）网络安全
 
 #### web安全
@@ -373,6 +405,7 @@ HttpOnly
 
 优秀文档
 - [Web 安全](https://developer.mozilla.org/zh-CN/docs/Web/Security!)
+
 ## 二、技术栈及开源方案
 
 ### （1）V8 引擎
