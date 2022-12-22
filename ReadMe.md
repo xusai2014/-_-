@@ -717,7 +717,7 @@ function matchList(root, list) {
     return !isMatch;
   })
   return newList
-  // while(newList.length > 0) {
+// while(newList.length > 0) {      
   //   console.log(newList.length)
   //   matchList(root, newList)
   // }
