@@ -33,7 +33,7 @@
 
 ### （1）Web统一UI渲染
 
-Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
+Web端期望实现统一的UI渲染，通过复用技术通用标准、框架模式、工具，来降低开发门槛、扩宽使用场景、提升研发效率、降低维护成本。
 
 <img src="./mind-map/Web统一UI渲染层.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
@@ -41,7 +41,7 @@ Web端期望实现统一的UI渲染，通过复用web的标准、框架模式、
 
 - 框架渲染问题
   - 框架渲染与技术側的学习成本、开发者体验、工程效率息息相关。
-  - 基于开发实践出现了Template模版渲染、Virtual DOM渲染、Flutter Canvaskit图层渲染
+  - 基于开发实践出现了Template模版渲染、Virtual DOM渲染、 Canvaskit图层渲染
 - 内容分发效率问题
   - 内容渲染时机与用户体验需要一个平衡点，这个平衡需要考虑生产效率、分发效率。
   - 例如SPA CSR兴起、SSR提升首屏体验、预渲染静态化、CDN内容动态化以及各大APP平台的NSR渲染
@@ -338,8 +338,40 @@ GPU 是由大量的小型处理单元构成的，一幅图像是由成千上万�
 [渲染页面：浏览器的工作原理](https://developer.mozilla.org/zh-CN/docs/Web/Performance/How_browsers_work!)
 
 ### （7）音视频
+- Media Source Extensions
+
 ### （8）VR/AR/XR
 ### （9）前后端一体化
+### （10）云原生
+云原生：云计算环境中构建、部署和管理现代应用程序的软件方法
+
+期望应用程序具有如下特性：
+
+- 拓展性
+- 灵活性
+- 弹性
+
+从而获得收益：
+- 提效
+- 降本
+- 高可用
+
+云原生应用程序架构：
+
+- 不可变基础设施
+- 微服务
+- 声明式API
+- 容器
+- 服务网格
+
+#### aws 云计算环境
+- Amazon Identity and Access Management (IAM)
+  - 资源和服务的精细化控制
+  - 用户组 - 用户 - 角色
+- 
+
+
+
 ### （10）网络安全
 
 #### web安全
@@ -373,6 +405,7 @@ HttpOnly
 
 优秀文档
 - [Web 安全](https://developer.mozilla.org/zh-CN/docs/Web/Security!)
+
 ## 二、技术栈及开源方案
 
 ### （1）V8 引擎
@@ -395,12 +428,13 @@ V8 提供了 JavaScript 执行的运行时环境，其它Javascript引擎：Spid
 
 **HTTP 版本**
 - HTTP 0.9
-  - 仅支持GET请求，通过URL携带参数获得资源，无请求头
-- HTTP 1.0
-  - 增加支持Post、Head等请求方法，增加请求头，可支持多种内容数据类型，不局限于文本格式
+  - 仅支持GET请求，通过URL携带参数获得资源，无请求头。
+- HTTP 1.0 （缺点：每次请求需建立新的TCP连接，资源开销、时间开销大。可手动开启keep-alive）
+  - 增加支持Post、Head等请求方法，增加请求头，可支持多种内容数据类型，不局限于文本格式。
 - HTTP 1.1 （缺点：同一个域名6个并发连接限制，应用层队头阻塞-长响应队头阻塞）
-  - 默认采用keep-alive 复用 TCP连接，
-  - 管道方式同时发送请求（客户端并发）
+  - 默认采用keep-alive 短时复用TCP连接。
+  - 单个TCP同时处理一个请求
+  - 管道方式同一个TCP连接同时发送请求，服务端按请求顺序返回响应（仅实现了客户端并发，默认不开启）
   - 分块传输编码，产生一块数据，就发送一块，采用"流模式"（stream）取代"缓存模式"（buffer）
   - 新增了请求方式 PUT、PATCH、OPTIONS、DELETE
   - 支持文件断点续传，RANGE:bytes
@@ -683,7 +717,7 @@ function matchList(root, list) {
     return !isMatch;
   })
   return newList
-  // while(newList.length > 0) {
+// while(newList.length > 0) {      
   //   console.log(newList.length)
   //   matchList(root, newList)
   // }
