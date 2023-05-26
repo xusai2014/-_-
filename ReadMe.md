@@ -67,7 +67,7 @@ Web端期望实现统一的UI渲染，通过复用技术通用标准、框架模
     - 介绍：snabbdom以函数的形式来表达程序视图，但现有的解决方式基本都过于臃肿、性能不佳、功能缺乏、API 偏向于 OOP 或者缺少一些我所需要的功能
     - vue vdom基于snabbdom实现
 
-- [CanvasKit](https://skia.org/docs/user/modules/quickstart/！)
+- [CanvasKit](https://skia.org/docs/user/modules/quickstart/)
 
 <img src="./mind-map/CanvasKit图层渲染.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 
@@ -81,11 +81,11 @@ Web端期望实现统一的UI渲染，通过复用技术通用标准、框架模
   - EJS 能够缓存 JS 函数的中间代码，从而提升执行速度。例如：ejs.cache = LRU(100);
   - <% 流程控制、<%- 引入包含、<%= 数据写入
   
-- [jsdom](https://github.com/jsdom/jsdom!)
+- [jsdom](https://github.com/jsdom/jsdom)
   - 介绍：由 javascript 实现的一系列 web标准，特别是 WHATWG 组织制定的DOM和 HTML 标准，用于在 nodejs 中使用。该项目的目标是模拟足够的Web浏览器子集，以便用于测试和挖掘真实世界的Web应用
 
 **优秀文档：**
-- [Virtual DOM 的设计与实现](https://nosaid.com/article/virtual-dom!)
+- [Virtual DOM 的设计与实现](https://nosaid.com/article/virtual-dom)
   - VNode 的设计
     - key 是 VNode 在同一父节点下的唯一标识
     - type 表示 tagName，表示节点的 tag 类型
@@ -108,8 +108,8 @@ Web端期望实现统一的UI渲染，通过复用技术通用标准、框架模
     - 不一样，不能复用。
       - 新节点是容器节点，旧的是文本节点。删除文本，添加新节点
       - 新节点是文本节点，旧的是容器节点。删除容器节点，添加文本节点。
-- [jsdom 中文介绍](https://github.com/jsdom/jsdom/wiki/jsdom-%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3!)
-- [跨平台Web Canvas渲染引擎架构的设计与思考(内含实现方案)](https://www.modb.pro/db/111446!)
+- [jsdom 中文介绍](https://github.com/jsdom/jsdom/wiki/jsdom-%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3)
+- [跨平台Web Canvas渲染引擎架构的设计与思考(内含实现方案)](https://www.modb.pro/db/111446)
   <img src="./imgs/web_canvas_arct.png" sizes="(max-width: 320px) 280px,(max-width: 480px) 440px, 800px" >
 - [你知道吗？SSR、SSG、ISR、DPR 有什么区别？](https://www.cnblogs.com/lhb25/p/16223782.html!)
 - [CanvasKit简介](https://tedaliez.github.io/2019/07/14/CanvasKit%E7%AE%80%E4%BB%8B/!)
