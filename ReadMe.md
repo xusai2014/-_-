@@ -53,7 +53,7 @@ Web端期望实现统一的UI渲染，通过复用技术通用标准、框架模
 
 **常见渲染层技术方案**
 
-- [react-dom 虚拟DOM](https://github.com/facebook/react/tree/main/packages/react-dom!)
+- [react-dom 虚拟DOM](https://github.com/facebook/react/tree/main/packages/react-dom)
     - createPortal 提供了一种将子节点渲染到已 DOM 节点中的方式，该节点存在于 DOM 组件的层次结构之外
     - flushSync 强制 React 同步刷新提供的回调函数中的任何更新。这确保了 DOM 会被立即更新
     - hydrateRoot
