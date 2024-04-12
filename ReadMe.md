@@ -404,7 +404,7 @@ Cookie 安全性
 HttpOnly
 
 优秀文档
-- [Web 安全](https://developer.mozilla.org/zh-CN/docs/Web/Security!)
+- [Web 安全](https://developer.mozilla.org/zh-CN/docs/Web/Security)
 
 ## 二、技术栈及开源方案
 
